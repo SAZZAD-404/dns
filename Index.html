@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bangla SecureDNS - এক DNS এ সব সুরক্ষা</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .main-dns {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .dns-box {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            display: inline-block;
+            margin: 10px;
+            border: 2px solid #4CAF50;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .dns-address {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 10px 0;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 30px;
+        }
+        
+        .feature {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background: #f8f9fa;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+            background: #e9ecef;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .setup-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-top: 2px solid #e9ecef;
+        }
+        
+        .device-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .device-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .device-btn:hover {
+            background: #45a049;
+            transform: scale(1.05);
+        }
+        
+        .guide {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            display: none;
+        }
+        
+        .guide.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .step {
+            margin: 10px 0;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .copy-btn {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        
+        .copy-btn:hover {
+            background: #1976D2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🛡️ Bangla SecureDNS</h1>
+            <p>একটি DNS এ সব সুরক্ষা - Adult Block, Ad Block, Security, Fast Internet</p>
+        </div>
+        
+        <!-- Main DNS Section -->
+        <div class="main-dns">
+            <h2>📡 আপনার অল-ইন-ওয়ান DNS সার্ভার</h2>
+            <p style="margin: 15px 0; color: #666;">এই একটি DNS দিয়ে ৪টি প্রোটেকশন পাবেন</p>
+            
+            <div class="dns-box">
+                <h3>প্রাইমারি DNS</h3>
+                <div class="dns-address" id="primaryDNS">94.140.14.14</div>
+                <button class="copy-btn" onclick="copyDNS('primaryDNS')">কপি করুন</button>
+            </div>
+            
+            <div class="dns-box">
+                <h3>সেকেন্ডারি DNS</h3>
+                <div class="dns-address" id="secondaryDNS">94.140.15.15</div>
+                <button class="copy-btn" onclick="copyDNS('secondaryDNS')">কপি করুন</button>
+            </div>
+            
+            <p style="margin-top: 20px; color: #666; font-size: 0.9rem;">
+                ✅ এই DNS এ সব ফিচার অটোমেটিক এক্টিভ থাকবে
+            </p>
+        </div>
+        
+        <!-- Features -->
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🔞</div>
+                <h3>Adult Block</h3>
+                <p>সমস্ত অ্যাডাল্ট কন্টেন্ট ব্লক</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">📢</div>
+                <h3>Ad Block</h3>
+                <p>যেকোনো বিজ্ঞাপন ব্লক</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h3>Fast Internet</h3>
+                <p>দ্রুত ইন্টারনেট স্পিড</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">🛡️</div>
+                <h3>Security</h3>
+                <p>ম্যালওয়্যার প্রোটেকশন</p>
+            </div>
+        </div>
+        
+        <!-- Setup Guides -->
+        <div class="setup-section">
+            <h2 style="text-align: center; margin-bottom: 20px;">📱 ডিভাইস সেটআপ গাইড</h2>
+            
+            <div class="device-buttons">
+                <button class="device-btn" onclick="showGuide('android')">Android</button>
+                <button class="device-btn" onclick="showGuide('iphone')">iPhone</button>
+                <button class="device-btn" onclick="showGuide('windows')">Windows</button>
+                <button class="device-btn" onclick="showGuide('mac')">Mac</button>
+                <button class="device-btn" onclick="showGuide('router')">Router</button>
+            </div>
+            
+            <!-- Android Guide -->
+            <div class="guide" id="android-guide">
+                <h3>📱 Android DNS সেটআপ</h3>
+                <div class="step">1. Settings → Network & Internet → Advanced</div>
+                <div class="step">2. Private DNS → Private DNS provider hostname</div>
+                <div class="step">3. Enter: <code>dns.adguard.com</code></div>
+                <div class="step">4. Save করুন</div>
+            </div>
+            
+            <!-- Windows Guide -->
+            <div class="guide" id="windows-guide">
+                <h3>💻 Windows DNS সেটআপ</h3>
+                <div class="step">1. Control Panel → Network and Sharing Center</div>
+                <div class="step">2. Change adapter settings</div>
+                <div class="step">3. আপনার connection এ Right-click → Properties</div>
+                <div class="step">4. Internet Protocol Version 4 (TCP/IPv4) → Properties</div>
+                <div class="step">5. Use following DNS: 94.140.14.14 and 94.140.15.15</div>
+            </div>
+            
+            <!-- Router Guide -->
+            <div class="guide" id="router-guide">
+                <h3>🔄 Router DNS সেটআপ</h3>
+                <div class="step">1. Browser এ router IP লিখুন (সাধারণত: 192.168.1.1 বা 192.168.0.1)</div>
+                <div class="step">2. Login করুন (admin/admin বা router এর instructions দেখুন)</div>
+                <div class="step">3. DNS settings খুঁজুন (সাধারণত WAN বা Internet settings এ)</div>
+                <div class="step">4. Manual DNS এ 94.140.14.14 এবং 94.140.15.15 দিন</div>
+                <div class="step">5. Save/Reboot করুন</div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2024 Bangla SecureDNS - একটি DNS এ সম্পূর্ণ সুরক্ষা</p>
+            <p style="margin-top: 10px; opacity: 0.8;">সব ডিভাইসে এক DNS - এক Protection</p>
+        </div>
+    </div>
+
+    <script>
+        // Show guide function
+        function showGuide(device) {
+            // Hide all guides
+            document.querySelectorAll('.guide').forEach(guide => {
+                guide.classList.remove('active');
+            });
+            
+            // Show selected guide
+            const guideId = device + '-guide';
+            document.getElementById(guideId).classList.add('active');
+        }
+        
+        // Copy DNS function
+        function copyDNS(dnsId) {
+            const dnsText = document.getElementById(dnsId).textContent;
+            navigator.clipboard.writeText(dnsText).then(() => {
+                alert('কপি করা হয়েছে: ' + dnsText);
+            });
+        }
+        
+        // Show Android guide by default
+        showGuide('android');
+    </script>
+</body>
+</html>
